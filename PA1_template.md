@@ -125,7 +125,7 @@ print(totalNA)
 ## [1] 2304
 ```
 
-*Imputation strategy*. The imputation of the missing data is done by replacing the missing values for the number of steps with the mean for that 5-minute interval across all days, since it is already available. The row numbers corresponding to the missing values are stored in the *locateMissing* vector; for each one of these rows, the corresponding interval identifier is read from the *interval* column in *rawData*, and then located in the *avgSteps* data frame. Missing data on that particular row is imputed using the average value for the number of steps. Data set *myData* is created, equal to the original dataset, but with the missing data filled in.
+*Imputation strategy*. The imputation of the missing data is done by replacing the missing values for the number of steps with the mean for that 5-minute interval across all days, since it is already available. The row numbers corresponding to the missing values are stored in the *locateMissing* vector; for each one of these rows, the corresponding interval identifier is read from the *interval* column in *rawData*, and then located in the *avgSteps* data frame. Missing data in that particular row is imputed using the average value for the number of steps. Data set *myData* is created, equal to the original dataset, but with the missing data filled in.
 
 ```r
 locateMissing <- which(is.na(rawData$steps))

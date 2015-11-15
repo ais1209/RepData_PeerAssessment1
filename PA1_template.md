@@ -140,7 +140,7 @@ for(ii in 1:totalNA) {
 }
 ```
     
-Make a histogram of the total number of steps taken each day and report the mean and median total number of steps taken per day. The median is shown in blue. Notice that the value of the median now equals that of the mean. The impact of imputing missing data on the estimates of the total daily number of steps has affected the distribution of the data (median has changed) and depends on how the imputation is done.
+Make a histogram of the total number of steps taken each day and report the mean and median total number of steps taken per day. The median is shown in blue on the histogram. Notice that the value of the median now equals that of the mean. The imputation of the missing data on the estimates of the total daily number of steps has affected the distribution of the data (the median has changed). 
 
 ```r
 total_per_day_after_imputation <- tapply(myData$steps, myData$date, sum)

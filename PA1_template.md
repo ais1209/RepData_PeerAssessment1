@@ -2,13 +2,28 @@
 
 
 ## Loading and preprocessing the data
-The data consists of two months of data from an anonymous individual collected during the months of October and November 2012, and include the number of steps taken in 5 minute intervals each day.
-Assuming the archived data set is in the current directory, unzip and load with `read.csv` into data frame *rawData*. Convert the column containing dates into the `Date` format.
+The data consists of two months of measurements from an anonymous individual collected during the months of October and November 2012, and include the number of steps taken in 5 minute intervals each day.
+Assuming the archived data set is in the current directory, unzip and load with `read.csv` into data frame *rawData*. Since the *date* column is of class factor and not date, make the conversion to `Date` format.
 
 ```r
 system("unzip activity.zip")
 rawData <- read.csv("activity.csv")
+sapply(rawData, class)
+```
+
+```
+##     steps      date  interval 
+## "integer"  "factor" "integer"
+```
+
+```r
 rawData$date <- as.Date(as.character(rawData$date))
+sapply(rawData, class)
+```
+
+```
+##     steps      date  interval 
+## "integer"    "Date" "integer"
 ```
 
 

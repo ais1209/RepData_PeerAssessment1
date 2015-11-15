@@ -114,4 +114,4 @@ xyplot(avgSteps ~ interval | day, data = myAvgSteps, layout = c(1, 2), type ="l"
        xlab = "Interval", ylab = "Average number of steps")
 ```
 
-Notice there are differences between the two patterns, as expected: there are more local maxima throughout the day during weekends, indicating a higher activity level, as the person is not bound to an office chair.
+Notice there are differences between the two patterns, as expected: there are higher values and more local maxima throughout the day during weekends, indicating a higher activity level, as the person is not bound to an office chair.

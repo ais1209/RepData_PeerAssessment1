@@ -125,32 +125,34 @@ print(totalNA)
 ## [1] 2304
 ```
 
-*Imputation strategy*. The imputation of the missing data is done by replacing the missing values for the number of steps with the mean for that 5-minute interval across all days, since it is already available. Data set *myData* is created, equal to the original dataset but with the missing data filled in.
+*Imputation strategy*. The imputation of the missing data is done by replacing the missing values for the number of steps with the mean for that 5-minute interval across all days, since it is already available. The row numbers corresponding to the missing values are stored in the *locateMissing* vector; for each one of these rows, the corresponding interval identifier is read from the *interval* column and then located in the avgSteps data frame, which contains the intervals and the corresponding average number of steps across all days. Missing data on that particular row is imputed using the average value for the number of steps. Data set *myData* is created, equal to the original dataset, but with the missing data filled in.
 
 ```r
 locateMissing <- which(is.na(rawData$steps))
-ll <- levels(as.factor(rawData$interval))
 myData <- rawData
+
 for(ii in 1:totalNA) {
-    # Find the position of the interval (index in the interval list ll) that corresponds to 
-    # the missing data and retrieve the corresponding average from the avgSteps vector.
-    whichInterval <- which( ll == rawData$interval[locateMissing[ii]])
+    # Find which interval corresponds to each row of missing data and then locate it in the 
+    # avgSteps data frame. Replace the missing step value by the step value in the same row in 
+    # avgStep. locateMissing[ii] is the row number for ii-th element in the NA list.
+    whichInterval <- which( avgSteps$interval == rawData$interval[locateMissing[ii]])
     myData$steps[locateMissing[ii]] <- avgSteps$avgSteps[whichInterval] 
 }
 ```
     
-Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Notice that the distribution appears closer to being symmetric than previously; the value of the median now equals that of the mean. The impact of imputing missing data on the estimates of the total daily number of steps depends on how the imputation is done.
+Make a histogram of the total number of steps taken each day and report the mean and median total number of steps taken per day. The median is shown in blue. Notice that the value of the median now equals that of the mean. The impact of imputing missing data on the estimates of the total daily number of steps has affected the distribution of the data (median has changed) and depends on how the imputation is done.
 
 ```r
-total_per_day_impute_NA<- tapply(myData$steps, myData$date, sum)
-hist(total_per_day_impute_NA,xlab = "Total steps per day", 
+total_per_day_after_imputation <- tapply(myData$steps, myData$date, sum)
+hist(total_per_day_after_imputation,xlab = "Total steps per day", 
      main = "Histogram of Total No. of Steps/Day After Imputation")
+abline(v = median(total_per_day_after_imputation), col = "blue", lwd = 2)
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
 
 ```r
-mean(total_per_day_impute_NA)
+mean(total_per_day_after_imputation)
 ```
 
 ```
@@ -158,7 +160,7 @@ mean(total_per_day_impute_NA)
 ```
 
 ```r
-median(total_per_day_impute_NA)
+median(total_per_day_after_imputation)
 ```
 
 ```

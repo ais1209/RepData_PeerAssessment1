@@ -169,7 +169,7 @@ median(total_per_day_after_imputation)
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
-To differentiate between weekdays and weekends, first create a new factor variable in the dataset with two levels -- "weekday" and "weekend" indicating whether a given date is a weekday or weekend day.
+To differentiate between weekdays and weekends, first create a new factor variable in the dataset with two levels, "weekday" and "weekend", indicating whether a given date is a weekday or weekend day.
 
 ```r
 myData$day <- ifelse(weekdays(myData$date) %in% c("Saturday", "Sunday"), "weekend","weekday")

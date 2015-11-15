@@ -152,7 +152,7 @@ abline(v = median(total_per_day_after_imputation), col = &quot;blue&quot;, lwd =
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
-<p>To differentiate between weekdays and weekends, first create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.</p>
+<p>To differentiate between weekdays and weekends, first create a new factor variable in the dataset with two levels, “weekday” and “weekend”, indicating whether a given date is a weekday or weekend day.</p>
 <pre class="r"><code>myData$day &lt;- ifelse(weekdays(myData$date) %in% c(&quot;Saturday&quot;, &quot;Sunday&quot;), &quot;weekend&quot;,&quot;weekday&quot;)
 myData &lt;- transform(myData, day = factor(day))
 head(myData)</code></pre>

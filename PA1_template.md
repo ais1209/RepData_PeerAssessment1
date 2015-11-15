@@ -111,7 +111,7 @@ points(maxInterval, max(avgSteps$avgSteps), col = "red")
 
 ![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
 
-Notice the peak occurs in the 8:35am - 8:40am interval, which may be the time when the person is getting ready for work, walking through the parking lot, etc.
+Notice the peak (8:35am) occurs in the morning, which may be the time when the person exercises.
 
 ## Imputing missing values
 First, calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs): 
@@ -125,7 +125,7 @@ print(totalNA)
 ## [1] 2304
 ```
 
-The imputation of the missing data is done by replacing the missing values for the number of steps with the mean for that 5-minute interval across all days, since it is already available. Data set *myData* is created, equal to the original dataset but with the missing data filled in.
+*Imputation strategy*. The imputation of the missing data is done by replacing the missing values for the number of steps with the mean for that 5-minute interval across all days, since it is already available. Data set *myData* is created, equal to the original dataset but with the missing data filled in.
 
 ```r
 locateMissing <- which(is.na(rawData$steps))

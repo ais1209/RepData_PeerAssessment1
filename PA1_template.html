@@ -66,7 +66,7 @@ img {
 
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
-<p>Assuming the data set is in the current directory, unzip and load with <code>read.csv</code>. Convert the column containing dates into the <code>Date</code> format.</p>
+<p>The data consists of two months of data from an anonymous individual collected during the months of October and November 2012, and include the number of steps taken in 5 minute intervals each day. Assuming the archived data set is in the current directory, unzip and load with <code>read.csv</code> into data frame <em>rawData</em>. Convert the column containing dates into the <code>Date</code> format.</p>
 <pre class="r"><code>system(&quot;unzip activity.zip&quot;)
 rawData &lt;- read.csv(&quot;activity.csv&quot;)
 rawData$date &lt;- as.Date(as.character(rawData$date))</code></pre>

@@ -38,7 +38,7 @@ library(plyr)
 df <- data.frame(date = rawData$date, steps = rawData$steps)
 total_per_day <- ddply(df, .(date), summarize, sum = sum(steps))
 ```
-Plot a histogram of the total number of steps taken each day, to get an idea about the distribution of the data. Notice that the distribution is not symmetric and we expect the median to be slightly lower than the mean.
+Plot a histogram of the total number of steps taken each day, to get an idea about the distribution of the data. Notice that the distribution is not quite symmetric and we expect the median to be slightly lower than the mean.
 
 ```r
 hist(total_per_day$sum,xlab = "Total steps per day", main = "Histogram of Total Number of Steps per Day")
@@ -66,7 +66,7 @@ median(total_per_day$sum, na.rm = TRUE)
 
 
 ## What is the average daily activity pattern?
-For this question, we use `ddply' to calculate the number of steps corresponding for each 5-min interval, averaged across all days in the data set. The first few rows of data are shown.
+For this question, use `ddply` to calculate the number of steps corresponding to each 5-min interval, averaged across all days in the data set. The first few rows of data are shown.
 
 ```r
 avgSteps <- ddply(rawData, .(interval), summarize, avgSteps = mean(steps, na.rm =TRUE))
@@ -82,7 +82,7 @@ head(avgSteps)
 ## 5       20 0.0754717
 ## 6       25 2.0943396
 ```
-Construct a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis). As expected, the average number of steps is lower for intervals lower than 500 (5am), and beyond 2000 (8pm), when the person was either asleep or relaxing at home.  
+Construct a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis). As expected, the average number of steps is lower for intervals lower than 500 (5am), and beyond 2000 (8pm), when the person was either asleep or gravitating around the sofa at home.  
 
 ```r
 plot(avgSteps$interval,avgSteps$avgSteps, type = "l", xlab = "Interval Number", ylab = "Average number of steps",main = "Number of steps, averaged across all days")

@@ -85,12 +85,13 @@ head(avgSteps)
 Construct a time series plot of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis). As expected, the average number of steps is lower for intervals lower than 500 (5am), and beyond 2000 (8pm), when the person was either asleep or gravitating around the sofa at home.  
 
 ```r
-plot(avgSteps$interval,avgSteps$avgSteps, type = "l", xlab = "Interval Number", ylab = "Average number of steps",main = "Number of steps, averaged across all days")
+plot(avgSteps$interval,avgSteps$avgSteps, type = "l", xlab = "Interval Number", 
+     ylab = "Average number of steps", main = "Number of steps, averaged across all days")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
 
-Finally, determine the 5-min interval, on average across all the days in the dataset, which contains the maximum number of steps. As a bonus, plot it on the time series plot.
+Finally, determine the 5-min interval, on average across all the days in the dataset, which contains the maximum number of steps. As a bonus, display it on the time series plot.
 
 ```r
 maxInterval <- avgSteps$interval[which.max(avgSteps$avgSteps)]
@@ -102,14 +103,15 @@ print(maxInterval)
 ```
 
 ```r
-plot(avgSteps$interval,avgSteps$avgSteps, type = "l", xlab = "Interval Number", ylab = "Average number of steps",main = "Number of steps, averaged across all days")
+plot(avgSteps$interval,avgSteps$avgSteps, type = "l", xlab = "Interval Number", 
+     ylab = "Average number of steps",main = "Number of steps, averaged across all days")
 par(new = T)
 points(maxInterval, max(avgSteps$avgSteps), col = "red")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
 
-Notice the peak occurs between 8am and 9am (835 means 8:35am); the person wearing the fitness tracker likely exercises in the morning.
+Notice the peak occurs in the 8:35am - 8:40am interval, which may be the time when the person is getting ready for work, walking through the parking lot, etc.
 
 ## Imputing missing values
 First, calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs): 
@@ -130,9 +132,8 @@ locateMissing <- which(is.na(rawData$steps))
 ll <- levels(as.factor(rawData$interval))
 myData <- rawData
 for(ii in 1:totalNA) {
-    # Find the position of the interval (index in the interval list ll) that corresponds to the missing 
-    # data and retrieve the corresponding
-    # average from the avgSteps vector.
+    # Find the position of the interval (index in the interval list ll) that corresponds to 
+    # the missing data and retrieve the corresponding average from the avgSteps vector.
     whichInterval <- which( ll == rawData$interval[locateMissing[ii]])
     myData$steps[locateMissing[ii]] <- avgSteps$avgSteps[whichInterval] 
 }
@@ -142,7 +143,8 @@ Make a histogram of the total number of steps taken each day and Calculate and r
 
 ```r
 total_per_day_impute_NA<- tapply(myData$steps, myData$date, sum)
-hist(total_per_day_impute_NA,xlab = "Total steps per day", main = "Histogram of Total No. of Steps/Day After Imputation")
+hist(total_per_day_impute_NA,xlab = "Total steps per day", 
+     main = "Histogram of Total No. of Steps/Day After Imputation")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
